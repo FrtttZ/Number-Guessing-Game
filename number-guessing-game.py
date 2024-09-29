@@ -26,15 +26,20 @@ def game():
 
     while attempts != chances or guess != number:
         attempts += 1
-        print(number)
-        guess = int(input("Enter your guess: "))
+        while True:
+            try:
+                guess = int(input("Enter your guess: "))
+                break
+            except(ValueError):
+                pass
+
         if guess > number:
             print(f"Incorrect! The number is less than {guess}")
         elif guess < number:
             print(f"Incorrect! The number is greater than {guess}")
         else:
             print(f"Congratulations! you guessed the number in {attempts} attempts")
-            retry = input("Type yes if you want to play again! ").lower()
+            retry = input("Type yes if you want to play again!: ").lower()
             if  retry == "yes":
                 attempts = 0
                 number = random.randrange(1, 101)
